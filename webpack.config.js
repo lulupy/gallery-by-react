@@ -10,6 +10,7 @@ module.exports = {
         filename: 'app.js',
         publicPath: '/assets'
     },
+    devtool: 'source-map',
     module: {
         loaders: [
             {
@@ -21,6 +22,14 @@ module.exports = {
                 test: /\.(js|jsx)$/,
                 loaders: ['babel-loader', 'eslint-loader'],
                 include: rootPath + '/src'
+            },
+            {
+                test: /\.json$/,
+                loader: 'json-loader'
+            },
+            {
+                test: /\.(png|jpg|gif|woff|woff2|eot|ttf|svg)$/,
+                loaders: ['url-loader?limit=8192']
             }
         ]
     },

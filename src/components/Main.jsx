@@ -1,25 +1,21 @@
 import React, { Component } from 'react';
 import '../styles/style.css';
 
+import ImgList from './ImgList.jsx';
+import ControlNav from './ControlNav.jsx';
+
+let data = require('../data/img-data.json');
+
+data.forEach((item)=>{
+    item.imgUrl = require('../images/'+item.fileName);
+});
+
 class Main extends Component{
     render() {
         return (
             <section className="stage">
-                <section className="img-list">
-                    <figure className="img-figure">
-                        <img src="../images/1.jpg" alt="" />
-                        <figcaption>
-                            <h2>title</h2>
-                            <p>description</p>
-                        </figcaption>
-                    </figure>
-                </section>
-                <nav className="control-nav">
-                    <ul>
-                        <li></li>
-                        <li></li>
-                    </ul>
-                </nav>
+                <ImgList data={data}/>
+                <ControlNav data={data}/>
             </section>
         );
         

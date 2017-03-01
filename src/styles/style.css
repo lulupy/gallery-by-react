@@ -32,6 +32,11 @@ html,body{
     transform-style: preserve-3d;
 
 }
+
+.img-figure img{
+    width: 200px;
+    height: 200px;
+}
 .img-figure.is-center{
     z-index: 1;
 }

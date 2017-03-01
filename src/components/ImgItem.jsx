@@ -2,9 +2,17 @@ import React, { Component } from 'react';
 
 class ImgItem extends Component{
     render() {
-        let item = this.props.item;
+        let {
+            item,
+            styleInfo
+        } = this.props;
+        let style = {
+            top: styleInfo.pos.top,
+            left: styleInfo.pos.left
+        }
+
         return (
-            <figure className="img-figure">
+            <figure className="img-figure" style={style}>
                 <img src={item.imgUrl} alt="" />
                 <figcaption>
                     <h2>{item.title}</h2>

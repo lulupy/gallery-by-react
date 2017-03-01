@@ -3,12 +3,15 @@ import ImgItem from './ImgItem.jsx';
 
 class ImgList extends Component{
     render() {
-        let data = this.props.data;
+        let {
+            data,
+            styleList
+        } = this.props;
         return (
             <section className="img-list">
                 {
                     data.map((item,i)=>{
-                        return <ImgItem item={item} key={i}/>
+                        return <ImgItem item={item} styleInfo={styleList[i]} key={i}/>
                     })
                 }
             </section>

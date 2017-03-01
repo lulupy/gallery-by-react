@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 import ControlUnit from './ControlUnit.jsx';
 class ControlNav extends Component{
     render() {
-        let data = this.props.data;
+        let {
+            styleList
+        } = this.props;
         return (
             <nav className="control-nav">
                 <ul>
                     {
-                        data.map((item, i)=>{
-                            return <ControlUnit key={i}/>
+                        styleList.map((item, i)=>{
+                            return <ControlUnit key={i} styleInfo={item} centerIndex={styleList.centerIndex} index={i} />
                         })
                     }
                 </ul>

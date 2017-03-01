@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import PubSub from 'pubsub-js';
+
 import '../styles/style.css';
 
 import ImgList from './ImgList.jsx';
@@ -58,7 +60,9 @@ class Main extends Component{
                 pos: {
                     top: 0,
                     left: 0
-                }
+                },
+                rotate: 0,
+                isReverse: false
             })
         }
     }
@@ -115,6 +119,15 @@ class Main extends Component{
 
         this.computePos(0);
 
+        
+        PubSub.subscribe('setCenter', (evName, index)=>{
+            this.computePos(index);
+        });
+
+        PubSub.subscribe('setReverse', (evName, index)=>{
+            this.setReverse(index);
+        });
+
     }
     
     //计算位置信息
@@ -157,32 +170,49 @@ class Main extends Component{
                     top: getRandom(posRange.rightSide.top[0], posRange.rightSide.top[1]),
                     left: getRandom(posRange.rightSide.left[0], posRange.rightSide.left[1])
                 }
-                console.log(posRange.rightSide.left[0], posRange.rightSide.left[1])
             }
         }
 
         //将开始提出来的项重新插入原数组，注意，后提出的先插入
-        for(let i=0;i<topNum;i++){
+        for(let i=topNum-1;i>-1;i--){
             styleList.splice(topIndexs[i], 0, topItems[i]);
         }
 
+        //加上旋转信息
+        styleList.forEach((item)=>{
+            item.rotate = getRandom(-30,30);
+            item.isReverse = false;
+        });
+        
+        centerItem.rotate = 0;
         styleList.splice(centerIndex, 0, centerItem);
 
-        
+
+        styleList.centerIndex = centerIndex;
+
         this.setState({
             styleList: styleList
         })
 
         
     }
+    
+    setReverse(index){
+        let styleList = this.state.styleList.slice();
+        styleList[index].isReverse = !styleList[index].isReverse;
+        styleList.centerIndex = index;
+
+        this.setState({
+            styleList: styleList
+        })
+    }
 
     render() {
         let styleList = this.state.styleList;
-        console.log(styleList);
         return (
             <section className="stage" ref="stage">
                 <ImgList data={data} styleList={styleList}/>
-                <ControlNav data={data}/>
+                <ControlNav styleList={styleList}/>
             </section>
         );
         

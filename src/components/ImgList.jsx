@@ -11,7 +11,7 @@ class ImgList extends Component{
             <section className="img-list">
                 {
                     data.map((item,i)=>{
-                        return <ImgItem item={item} styleInfo={styleList[i]} key={i}/>
+                        return <ImgItem index={i} item={item} styleInfo={styleList[i]} key={i} centerIndex={styleList.centerIndex}/>
                     })
                 }
             </section>

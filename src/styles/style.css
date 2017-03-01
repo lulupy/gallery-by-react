@@ -29,6 +29,7 @@ html,body{
     background: #fff;
     transition: 1s;
     perspective: 800px;
+    transform-origin: left top; 
     transform-style: preserve-3d;
 
 }
@@ -36,6 +37,7 @@ html,body{
 .img-figure img{
     width: 200px;
     height: 200px;
+    backface-visibility: hidden;
 }
 .img-figure.is-center{
     z-index: 1;
@@ -50,10 +52,6 @@ html,body{
     transform: rotateY(180deg);
     backface-visibility: hidden;
     z-index: 9;
-}
-
-.img-figure.is-reverse{
-    transform-origin: left top; 
 }
 
 .control-nav{

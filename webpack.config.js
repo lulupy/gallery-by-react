@@ -6,9 +6,9 @@ const rootPath = path.resolve(__dirname);
 module.exports = {
     entry: rootPath + '/src/index.jsx',
     output: {
-        path: rootPath + '/dist',
+        path: rootPath + '/dist/assets',
         filename: 'app.js',
-        publicPath: '/assets'
+        publicPath: '/assets/'
     },
     devtool: 'source-map',
     module: {
